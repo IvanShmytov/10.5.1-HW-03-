@@ -1,17 +1,17 @@
 ﻿using System;
-//Создайте консольный мини-калькулятор, который будет подсчитывать сумму двух чисел. 
-//Определите интерфейс для функции сложения числа и реализуйте его.
-//Дополнительно: добавьте конструкцию Try/Catch/Finally для проверки корректности введённого значения.
-namespace Modul10Task1
+//Реализуйте механизм внедрения зависимостей: добавьте в мини-калькулятор логгер, используя материал из скринкаста юнита 10.1.
+//Дополнительно: текст ошибки, выводимый в логгере, окрасьте в красный цвет, а текст события — в синий цвет.
+namespace Modul10Task2
 {
     class MainClass
     {
-
+        static ILogger Logger;
         public static void Main(string[] args)
         {
+            Logger = new Logger();
+            Calculator calc = new Calculator(Logger);
             try
             {
-                ICalculator calc = new Calculator();
                 Console.WriteLine("Выберите операцию\n1. Сложение\n2. Вычитание\n3. Умножение\n4. Деление");
                 int key = Convert.ToInt32(Console.ReadLine());
                 switch (key)
@@ -34,7 +34,7 @@ namespace Modul10Task1
             }
             catch (Exception ex)
             {
-
+                calc.ErrorHandler();
                 Console.WriteLine(ex.GetType());
                 Console.WriteLine(ex.Message);
             }

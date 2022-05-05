@@ -2,12 +2,9 @@
 //Дополнительно: текст ошибки, выводимый в логгере, окрасьте в красный цвет, а текст события — в синий цвет.
 namespace Modul10Task2
 {
-    public interface ICalculator
+    public interface ILogger
     {
-        void Sum();
-        void Subtr();
-        void Mult();
-        void Div();
-
+        void Event(string message);
+        void Error();
     }
 }

@@ -2,12 +2,18 @@
 //Дополнительно: текст ошибки, выводимый в логгере, окрасьте в красный цвет, а текст события — в синий цвет.
 namespace Modul10Task2
 {
-    public interface ICalculator
+    class Logger : ILogger
     {
-        void Sum();
-        void Subtr();
-        void Mult();
-        void Div();
+        public void Error()
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("Ошибка!!!");
+        }
 
+        public void Event(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(message);
+        }
     }
 }

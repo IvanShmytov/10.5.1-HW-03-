@@ -1,13 +1,21 @@
-﻿//Создайте консольный мини-калькулятор, который будет подсчитывать сумму двух чисел. 
-//Определите интерфейс для функции сложения числа и реализуйте его.
-//Дополнительно: добавьте конструкцию Try/Catch/Finally для проверки корректности введённого значения.
-namespace Modul10Task1
+﻿//Реализуйте механизм внедрения зависимостей: добавьте в мини-калькулятор логгер, используя материал из скринкаста юнита 10.1.
+//Дополнительно: текст ошибки, выводимый в логгере, окрасьте в красный цвет, а текст события — в синий цвет.
+namespace Modul10Task2
 {
     class Calculator : ICalculator
     {
+        protected ILogger Logger { get;}
+        public Calculator(ILogger logger) 
+        {
+            Logger = logger;
+        }
+        public void ErrorHandler() 
+        {
+            Logger.Error();
+        }
         public void Div()
         {
-            Console.WriteLine("Операция деления\nВведите первый операнд");
+            Logger.Event("Операция деления\nВведите первый операнд");
             int a = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Введите второй операнд");
             int b = Convert.ToInt32(Console.ReadLine());
@@ -16,7 +24,7 @@ namespace Modul10Task1
 
         public void Mult()
         {
-            Console.WriteLine("Операция умножения\nВведите первый операнд");
+            Logger.Event("Операция умножения\nВведите первый операнд");
             int a = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Введите второй операнд");
             int b = Convert.ToInt32(Console.ReadLine());
@@ -25,7 +33,7 @@ namespace Modul10Task1
 
         public void Subtr()
         {
-            Console.WriteLine("Операция вычитания\nВведите первый операнд");
+            Logger.Event("Операция вычитания\nВведите первый операнд");
             int a = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Введите второй операнд");
             int b = Convert.ToInt32(Console.ReadLine());
@@ -34,7 +42,7 @@ namespace Modul10Task1
 
         public void Sum()
         {
-            Console.WriteLine("Операция сложения\nВведите первый операнд");
+            Logger.Event("Операция сложения\nВведите первый операнд");
             int a = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine("Введите второй операнд");
             int b = Convert.ToInt32(Console.ReadLine());
